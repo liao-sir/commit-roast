@@ -23,9 +23,28 @@ Use this skill to review Git changes with a useful roast: funny enough to be mem
 - 如果用户要求双语输出，先中文后英文。
 - `P1/P2/P3`、命令、路径和 commit message 示例不要翻译成别扭表达。
 
+## Quick Start / 快速开始
+
+When working inside a Git repository, gather review context first:
+
+```bash
+python scripts/collect_diff_context.py --mode auto
+```
+
+在 Git 仓库内使用时，优先用脚本收集审查上下文：
+
+```bash
+python scripts/collect_diff_context.py --mode auto
+```
+
+Use the script output as evidence, then inspect the actual changed files before judging readiness. If the script is unavailable, fall back to the manual workflow below.
+
+脚本输出只能作为证据入口；判断是否可提交前仍要阅读实际改动文件。脚本不可用时，使用下面的手动流程。
+
 ## Core Workflow / 核心流程
 
 1. Identify the review target / 确认审查对象。
+   - Prefer `python scripts/collect_diff_context.py --mode auto` when this skill's scripts are available.
    - Prefer `git status --short`.
    - Review staged changes with `git diff --staged`.
    - If nothing is staged, review unstaged changes with `git diff`.
@@ -159,7 +178,14 @@ Bad examples:
 
 ## Reference Playbook / 参考手册
 
-For deeper checklists, tone levels, bilingual examples, and commit-message patterns, read `references/roast-playbook.md` when:
+For deeper checklists, tone levels, bilingual examples, and commit-message patterns, read these references only when needed:
+
+- `references/roast-playbook.md`: complete review workflow, tone levels, finding templates, ready verdicts.
+- `references/review-matrix.md`: language/framework risk matrix for frontend, backend, database, config, CI, docs, and tests.
+- `references/output-gallery.md`: realistic Chinese, English, bilingual, quick, and strict output examples.
+- `references/tone-bank.md`: reusable roast lines grouped by risk type and severity.
+
+Read them when:
 
 - the diff is large or risky,
 - the user asks for a "super complete" review,
@@ -167,7 +193,17 @@ For deeper checklists, tone levels, bilingual examples, and commit-message patte
 - the output needs both Chinese and English examples,
 - the review involves security, migrations, public APIs, or release readiness.
 
-当 diff 较大、风险较高、用户要求“超级完整”、需要语气档位、需要中英双语示例，或涉及安全/迁移/公开 API/发布前检查时，读取 `references/roast-playbook.md`。
+当 diff 较大、风险较高、用户要求“超级完整”、需要语气档位、需要中英双语示例，或涉及安全/迁移/公开 API/发布前检查时，按需读取以上 reference 文件。
+
+## Bundled Script / 内置脚本
+
+`scripts/collect_diff_context.py` collects branch, status, staged/unstaged mode, changed files, diff stats, and a bounded diff excerpt.
+
+`scripts/collect_diff_context.py` 会收集当前分支、状态、staged/unstaged 模式、变更文件、diff 统计和有限长度 diff 摘要。
+
+Use it to avoid lazy reviews based only on vibes. Do not treat it as a replacement for reading code.
+
+用它避免只凭感觉 review，但不要用它替代阅读代码。
 
 ## Hard Rules / 硬规则
 

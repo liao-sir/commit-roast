@@ -1,20 +1,43 @@
 # Commit Roast
 
+![Codex Skill](https://img.shields.io/badge/Codex-Skill-111827)
+![Language](https://img.shields.io/badge/output-English%20%7C%20中文-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+
 English | [中文](#中文说明)
 
 Roast your diff, then write a commit message that would survive code review.
 
 `commit-roast` is a bilingual Codex skill for reviewing staged or unstaged Git changes with controlled developer humor. It catches real risks, names review friction, suggests focused fixes, and produces commit-ready messages.
 
+## Why It Exists
+
+Most AI code reviews are either too polite to be memorable or too noisy to be useful. `commit-roast` aims for the useful middle: it makes questionable code choices hard to ignore, but still turns every joke into a concrete review action.
+
 ## What It Does
 
 - Reviews staged diffs, unstaged diffs, patches, commit SHAs, and PR snippets.
+- Includes a dependency-free helper script for collecting diff context.
 - Supports English, Chinese, and bilingual output.
 - Separates blockers from polish using `P1/P2/P3` severity.
 - Turns jokes into actionable review notes.
 - Suggests relevant tests without asking for pointless coverage.
 - Generates practical commit message options.
 - Keeps the roast aimed at code, not people.
+
+## What's Included
+
+```text
+commit-roast/
+  SKILL.md                         # bilingual skill instructions
+  agents/openai.yaml               # Codex UI metadata
+  scripts/collect_diff_context.py  # dependency-free Git context collector
+  references/roast-playbook.md     # main review playbook
+  references/review-matrix.md      # surface-specific risk matrix
+  references/output-gallery.md     # realistic output examples
+  references/tone-bank.md          # reusable roast inspiration
+  examples/sample-context.md       # synthetic review fixture
+```
 
 ## Example Prompts
 
@@ -40,6 +63,16 @@ Use $commit-roast in strict mode before I open this PR.
 - `quick`: one-line verdict for small diffs.
 - `strict`: production-minded review for risky commits, releases, migrations, or PRs.
 
+## Helper Script
+
+Inside a Git repository:
+
+```bash
+python ~/.codex/skills/commit-roast/scripts/collect_diff_context.py --mode auto
+```
+
+It reports branch, status, changed files, diff stats, and a bounded diff excerpt. The skill uses that as evidence before producing a roast.
+
 ## Installation
 
 Clone this repository into your Codex skills directory:
@@ -58,8 +91,15 @@ commit-roast/
   SKILL.md
   agents/
     openai.yaml
+  scripts/
+    collect_diff_context.py
   references/
     roast-playbook.md
+    review-matrix.md
+    output-gallery.md
+    tone-bank.md
+  examples/
+    sample-context.md
 ```
 
 ## Design Principles
@@ -76,15 +116,34 @@ commit-roast/
 
 `commit-roast` 是一个中英双语 Codex skill，用带一点开发者幽默的方式审查 staged / unstaged Git 改动。它不是单纯搞笑，而是把吐槽转成真实问题、最小修复建议、测试建议和可提交的 commit message。
 
+## 为什么做它
+
+很多 AI code review 要么太客气，记不住；要么太吵，没法用。`commit-roast` 取中间路线：让可疑代码选择变得很难忽视，但每一句吐槽都要落到具体 review action。
+
 ## 它能做什么
 
 - 审查 staged diff、unstaged diff、patch、commit SHA 和 PR 片段。
+- 内置无依赖脚本，用于收集 Git diff 上下文。
 - 支持英文、中文和中英双语输出。
 - 用 `P1/P2/P3` 区分阻塞问题和可选优化。
 - 把吐槽转成可执行 review notes。
 - 只建议真正保护变更行为的测试。
 - 生成实用的 commit message。
 - 只吐槽代码和流程，不攻击开发者。
+
+## 内置内容
+
+```text
+commit-roast/
+  SKILL.md                         # 中英双语 skill 指令
+  agents/openai.yaml               # Codex UI 元数据
+  scripts/collect_diff_context.py  # 无依赖 Git 上下文收集脚本
+  references/roast-playbook.md     # 主审查手册
+  references/review-matrix.md      # 按技术面分类的风险矩阵
+  references/output-gallery.md     # 真实输出示例
+  references/tone-bank.md          # 吐槽语料灵感库
+  examples/sample-context.md       # 合成 review 样例
+```
 
 ## 中文示例
 
@@ -109,6 +168,16 @@ Use $commit-roast to give me bilingual output for this patch.
 - `standard`：默认模式，包含吐槽、问题、修复、测试和提交信息。
 - `quick`：小 diff 快速判断能不能提交。
 - `strict`：用于高风险改动、发布前检查、迁移、安全相关改动或正式 PR。
+
+## 辅助脚本
+
+在 Git 仓库里运行：
+
+```bash
+python ~/.codex/skills/commit-roast/scripts/collect_diff_context.py --mode auto
+```
+
+它会输出当前分支、状态、变更文件、diff 统计和有限长度 diff 摘要，作为 skill review 的证据入口。
 
 ## 安装
 
