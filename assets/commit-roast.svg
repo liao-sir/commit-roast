@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Commit Roast</title>
+  <desc id="desc">A stylized flame over a Git branch mark.</desc>
+  <rect width="512" height="512" rx="96" fill="#111827"/>
+  <path d="M260 74c30 54-9 82 32 126 12-45 50-62 50-62-5 48 47 87 47 156 0 83-61 144-133 144s-133-61-133-144c0-66 43-105 76-145 28-34 35-60 24-102 0 0 24 7 37 27z" fill="#F97316"/>
+  <path d="M257 202c18 31-5 48 19 74 8-26 30-36 30-36-3 28 27 51 27 91 0 49-36 84-78 84s-78-35-78-84c0-39 25-62 44-86 17-20 21-35 14-60 0 0 14 4 22 17z" fill="#FDBA74"/>
+  <circle cx="178" cy="236" r="22" fill="#111827"/>
+  <circle cx="334" cy="236" r="22" fill="#111827"/>
+  <path d="M178 236h156M256 236v100" stroke="#111827" stroke-width="24" stroke-linecap="round"/>
+  <circle cx="256" cy="336" r="24" fill="#111827"/>
+</svg>

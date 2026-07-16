@@ -1,6 +1,9 @@
 interface:
   display_name: "Commit Roast"
   short_description: "Bilingual diff roast for clean commits."
+  icon_small: "./assets/commit-roast-small.svg"
+  icon_large: "./assets/commit-roast.svg"
+  brand_color: "#F97316"
   default_prompt: "Use $commit-roast to review my staged diff in Chinese or English, roast the risky parts, and suggest a commit message."
 
 policy:

@@ -3,6 +3,7 @@
 ![Codex Skill](https://img.shields.io/badge/Codex-Skill-111827)
 ![Language](https://img.shields.io/badge/output-English%20%7C%20中文-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
+![Validation](https://img.shields.io/badge/validation-scripted-orange)
 
 English | [中文](#中文说明)
 
@@ -31,12 +32,15 @@ Most AI code reviews are either too polite to be memorable or too noisy to be us
 commit-roast/
   SKILL.md                         # bilingual skill instructions
   agents/openai.yaml               # Codex UI metadata
+  assets/commit-roast.svg          # skill icon
   scripts/collect_diff_context.py  # dependency-free Git context collector
+  scripts/validate_skill.py        # repository self-check
   references/roast-playbook.md     # main review playbook
   references/review-matrix.md      # surface-specific risk matrix
   references/output-gallery.md     # realistic output examples
   references/tone-bank.md          # reusable roast inspiration
   examples/sample-context.md       # synthetic review fixture
+  tests/                           # script behavior tests
 ```
 
 ## Example Prompts
@@ -73,6 +77,15 @@ python ~/.codex/skills/commit-roast/scripts/collect_diff_context.py --mode auto
 
 It reports branch, status, changed files, diff stats, and a bounded diff excerpt. The skill uses that as evidence before producing a roast.
 
+## Validation
+
+```bash
+python scripts/validate_skill.py
+python -m unittest discover -s tests
+```
+
+The validator checks skill frontmatter, metadata, referenced resources, README coverage, Python syntax, and obvious placeholder leaks.
+
 ## Installation
 
 Clone this repository into your Codex skills directory:
@@ -91,8 +104,12 @@ commit-roast/
   SKILL.md
   agents/
     openai.yaml
+  assets/
+    commit-roast.svg
+    commit-roast-small.svg
   scripts/
     collect_diff_context.py
+    validate_skill.py
   references/
     roast-playbook.md
     review-matrix.md
@@ -100,6 +117,9 @@ commit-roast/
     tone-bank.md
   examples/
     sample-context.md
+  tests/
+    test_collect_diff_context.py
+    test_validate_skill.py
 ```
 
 ## Design Principles
@@ -137,12 +157,15 @@ commit-roast/
 commit-roast/
   SKILL.md                         # 中英双语 skill 指令
   agents/openai.yaml               # Codex UI 元数据
+  assets/commit-roast.svg          # skill 图标
   scripts/collect_diff_context.py  # 无依赖 Git 上下文收集脚本
+  scripts/validate_skill.py        # 仓库自检脚本
   references/roast-playbook.md     # 主审查手册
   references/review-matrix.md      # 按技术面分类的风险矩阵
   references/output-gallery.md     # 真实输出示例
   references/tone-bank.md          # 吐槽语料灵感库
   examples/sample-context.md       # 合成 review 样例
+  tests/                           # 脚本行为测试
 ```
 
 ## 中文示例
@@ -178,6 +201,15 @@ python ~/.codex/skills/commit-roast/scripts/collect_diff_context.py --mode auto
 ```
 
 它会输出当前分支、状态、变更文件、diff 统计和有限长度 diff 摘要，作为 skill review 的证据入口。
+
+## 验证
+
+```bash
+python scripts/validate_skill.py
+python -m unittest discover -s tests
+```
+
+自检脚本会检查 skill frontmatter、元数据、引用资源、README 覆盖、Python 语法和明显占位符残留。
 
 ## 安装
 

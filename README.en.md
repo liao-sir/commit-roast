@@ -9,11 +9,13 @@ Roast your diff, then write a commit message that would survive code review.
 This repository includes:
 
 - `scripts/collect_diff_context.py`: dependency-free Git diff context collector.
+- `scripts/validate_skill.py`: repository self-check.
 - `references/roast-playbook.md`: complete review playbook.
 - `references/review-matrix.md`: frontend, backend, database, CI, test, and docs risk matrix.
 - `references/output-gallery.md`: realistic output examples.
 - `references/tone-bank.md`: roast inspiration bank.
 - `examples/sample-context.md`: synthetic review fixture.
+- `.github/workflows/validate.yml`: CI for validation and tests.
 
 ## Quick Use
 
@@ -53,6 +55,13 @@ python ~/.codex/skills/commit-roast/scripts/collect_diff_context.py --mode auto
 ```
 
 The script collects branch, status, changed files, diff stats, and a bounded diff excerpt so Codex can review from evidence.
+
+## Validation
+
+```bash
+python scripts/validate_skill.py
+python -m unittest discover -s tests
+```
 
 ## License
 
