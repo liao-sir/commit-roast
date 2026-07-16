@@ -1,7 +1,7 @@
 interface:
   display_name: "Commit Roast"
-  short_description: "Roast a diff, then make it commit-ready."
-  default_prompt: "Use $commit-roast to review my staged diff, roast the risky parts, and suggest a commit message."
+  short_description: "Bilingual diff roast for clean commits."
+  default_prompt: "Use $commit-roast to review my staged diff in Chinese or English, roast the risky parts, and suggest a commit message."
 
 policy:
   allow_implicit_invocation: true
